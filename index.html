@@ -25,7 +25,28 @@
     color: #ff4d4d;
     text-shadow: 0 0 6px #ff0000, 0 0 14px #ff0000, 0 0 28px #ff0000;
   }
+  #discord-stats {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #discord-stats .online-text {
+    color: #3fff6e;
+    text-shadow: 0 0 6px #22c55e, 0 0 14px #22c55e, 0 0 28px #22c55e;
+  }
+  #discord-stats .members-text {
+    color: #2a5cff;
+    text-shadow: 0 0 6px #1d3fa8, 0 0 14px #1d3fa8, 0 0 28px #1d3fa8;
+  }
 </style>
+<link rel="stylesheet" href="glass-background-for-discord-stats.css">
 </head>
 <body style="background: #320961;">
   <canvas id="stars-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
@@ -33,6 +54,11 @@
   <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 24px;">
     <a class="top-link discord-link glass-dock" href="https://discord.gg/uPrHQE9jdR" target="_blank" rel="noopener noreferrer">Discord</a>
     <a class="top-link youtube-link glass-dock" href="https://www.youtube.com/@Noctyxsniping" target="_blank" rel="noopener noreferrer">YouTube</a>
+  </div>
+
+  <div id="discord-stats">
+    <span class="online-text"></span>
+    <span class="members-text"></span>
   </div>
 
   <img src="https://raw.githubusercontent.com/m3cha1/website-for-my-friends-server/main/noctyx%20logo.png" alt="Noctyx logo" style="position: relative; z-index: 1;">
@@ -43,5 +69,33 @@
   </div>
 
   <script src="stars and cool anim for stars.js"></script>
+  <script>
+    const DISCORD_GUILD_ID = "1454248737785380999";
+    const DISCORD_INVITE_CODE = "uPrHQE9jdR";
+
+    async function updateDiscordStats() {
+      const onlineEl = document.querySelector("#discord-stats .online-text");
+      const membersEl = document.querySelector("#discord-stats .members-text");
+
+      try {
+        const widgetRes = await fetch(`https://discord.com/api/guilds/${DISCORD_GUILD_ID}/widget.json`);
+        const widget = await widgetRes.json();
+        onlineEl.textContent = `${widget.presence_count} online`;
+      } catch (e) {
+        onlineEl.textContent = "";
+      }
+
+      try {
+        const inviteRes = await fetch(`https://discord.com/api/invites/${DISCORD_INVITE_CODE}?with_counts=true`);
+        const invite = await inviteRes.json();
+        membersEl.textContent = `${invite.approximate_member_count} members`;
+      } catch (e) {
+        membersEl.textContent = "";
+      }
+    }
+
+    updateDiscordStats();
+    setInterval(updateDiscordStats, 60000);
+  </script>
 </body>
 </html>
