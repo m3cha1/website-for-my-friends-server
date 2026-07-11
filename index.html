@@ -10,6 +10,8 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/m3cha1/website-for-my-friends-server/main/noctyx%20logo.png">
 <link rel="stylesheet" href="glass-background-thing-for-desc.css">
 <link rel="stylesheet" href="glass-background-for-yt-and-dc.css">
+<link rel="stylesheet" href="glass-background-for-about-us-button.css">
+<link rel="stylesheet" href="glass-background-for-about-us-text.css">
 <style>
   .top-link {
     text-decoration: none;
@@ -24,6 +26,20 @@
   .youtube-link {
     color: #ff4d4d;
     text-shadow: 0 0 6px #ff0000, 0 0 14px #ff0000, 0 0 28px #ff0000;
+  }
+  .about-link {
+    color: #b266ff;
+    text-shadow: 0 0 6px #a855f7, 0 0 14px #a855f7, 0 0 28px #a855f7;
+    cursor: pointer;
+  }
+  .about-text {
+    white-space: pre-line;
+    font-size: 1.5em;
+    line-height: 1.3;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 8px #ffffff, 0 0 18px #ffffff, 0 0 36px #ffffff;
   }
   #discord-stats {
     position: fixed;
@@ -61,11 +77,30 @@
     <span class="members-text"></span>
   </div>
 
-  <img src="https://raw.githubusercontent.com/m3cha1/website-for-my-friends-server/main/noctyx%20logo.png" alt="Noctyx logo" style="position: relative; z-index: 1;">
+  <div style="position: fixed; top: 20px; right: 20px; z-index: 2;">
+    <a class="top-link about-link" href="#" id="about-toggle">About us</a>
+  </div>
 
-  <div class="dock" style="position: relative; z-index: 1;">
+  <img id="noctyx-logo" src="https://raw.githubusercontent.com/m3cha1/website-for-my-friends-server/main/noctyx%20logo.png" alt="Noctyx logo" style="position: relative; z-index: 1;">
+
+  <div class="dock" id="main-dock" style="position: relative; z-index: 1;">
     <h1>Welcome to Noctyx Sniping clan's website</h1>
     <p>Noctyx Sniping is a competitive multi Roblox sniping clan focused on skill, teamwork, and domination. We're building a community of dedicated players who are ready to improve, compete, and climb the ranks together.</p>
+  </div>
+
+  <div class="about-dock" id="about-dock" style="position: relative; z-index: 1;">
+    <span class="about-close" id="about-close">✕</span>
+    <div class="about-text" id="about-text">Started as Flythru Alliance and have re-branded to Noctyx Sniping. With Noctyx Sniping released now we will be more active with our videos and our community. At least a montage monthly, we will try to do more.
+
+Owner and founders:
+@splinterboy14
+Plays (he doesn’t have a YouTube channel or any social media)
+
+Editors:
+@splinterboy14
+@diatio
+@pizzacrustthief
+@ROCKY_v1zz</div>
   </div>
 
   <script src="stars and cool anim for stars.js"></script>
@@ -96,6 +131,37 @@
 
     updateDiscordStats();
     setInterval(updateDiscordStats, 60000);
+
+    const aboutToggle = document.getElementById("about-toggle");
+    const aboutClose = document.getElementById("about-close");
+    const noctyxLogo = document.getElementById("noctyx-logo");
+    const mainDock = document.getElementById("main-dock");
+    const aboutDock = document.getElementById("about-dock");
+    let aboutOpen = false;
+
+    function setAboutOpen(open) {
+      aboutOpen = open;
+
+      if (aboutOpen) {
+        noctyxLogo.style.display = "none";
+        mainDock.style.display = "none";
+        aboutDock.style.display = "block";
+      } else {
+        noctyxLogo.style.display = "";
+        mainDock.style.display = "";
+        aboutDock.style.display = "none";
+      }
+    }
+
+    aboutToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      setAboutOpen(!aboutOpen);
+    });
+
+    aboutClose.addEventListener("click", (e) => {
+      e.preventDefault();
+      setAboutOpen(false);
+    });
   </script>
 </body>
 </html>
