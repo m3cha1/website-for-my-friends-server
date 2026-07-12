@@ -16,7 +16,7 @@ img {
   max-height: 40vh;
 }
 
-.dock {
+.background {
   margin-top: 30px;
   max-width: 700px;
   text-align: center;
@@ -35,7 +35,7 @@ img {
     0 8px 25px rgba(0, 0, 0, 0.35);
 }
 
-.dock h1 {
+.background h1 {
   margin: 0 0 15px 0;
   font-size: 1.8em;
   font-weight: bold;
@@ -43,7 +43,7 @@ img {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.55);
 }
 
-.dock p {
+.background p {
   margin: 0;
   font-size: 1em;
   line-height: 1.5;
