@@ -1,4 +1,4 @@
-.glass-dock {
+.glass-background {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.glass-dock:hover {
+.glass-background:hover {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.12);
   box-shadow:
