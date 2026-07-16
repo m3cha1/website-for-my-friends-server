@@ -1,1 +1,0 @@
-![Image](https://raw.githubusercontent.com/m3cha1/website-for-my-friends-server/main/noctyx%20logo.png) ***Welcome to Noctyx Sniping, Noctyx sniping is a competitive multi roblox sniping clan focused on skill, teamwork, and domination. We're building a community of dedicated players who are ready to improve, compete, and climb the ranks together.***
